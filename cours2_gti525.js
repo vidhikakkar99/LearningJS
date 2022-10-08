@@ -12,6 +12,7 @@ console.log(user1.login());
 //can change name with both ways
 user1.name = 'bhai';
 user1['name'] = 'rahul';
+var hjb = user1['n']; // undefined
 
 //add new properties and methods
 user1.age = 25;
