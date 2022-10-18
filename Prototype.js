@@ -56,3 +56,13 @@ var ola = new hello();
 
 console.log(ola);
 
+function Stupid(){}
+Stupid.prototype.karo = function(){
+    return this;
+}
+var s1 = new Stupid();
+console.log(s1.karo); //this will show you the function kaise dikhta hai
+console.log(s1.karo()); //will return the OG sequelette
+
+var see = s1.karo;
+console.log(see())
