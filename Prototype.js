@@ -22,3 +22,37 @@ User.prototype.logout = function(){
 }
 uno.logout(); //this is in the proto bc pointing towards prototype
 console.log(uno);
+
+var Employee = function(email, name, title) {
+	User.call(this, email, name);
+	this.title = title;	
+};
+Employee.prototype = Object.create(User.prototype); //gives access to its own _proto_
+Employee.prototype.constructor = Employee ; //w/o it Employee _proto_ pointing
+//towards Users which points towards Object that contains the methods
+//so this removes the "Object" now
+var e1 = new Employee("XYZ", "ABC", "He"); //here e1 didnt get the _proto_ pointing towards Employee
+console.log(e1);
+console.log(Employee);
+console.log( Object.getPrototypeOf(e1) );
+hello();
+function hello(){
+    var proto = Object.getPrototypeOf(e1); //will only give you the stuff saved in proto
+    console.log(proto)
+    for(index in e1){
+        //gives the values in the obj
+        console.log(e1[index]);
+        console.log(proto[index])
+        if((index in proto)&& typeof(e1[index != "function"])){
+
+            console.log(index);
+        }
+       
+    }
+}
+
+
+var ola = new hello();
+
+console.log(ola);
+
