@@ -65,4 +65,50 @@ console.log(s1.karo); //this will show you the function kaise dikhta hai
 console.log(s1.karo()); //will return the OG sequelette
 
 var see = s1.karo;
-console.log(see())
+console.log(see());
+
+// Fermeture qui maintient un pointeur vers la fonction englobante
+// Attention: cet exemple ne montre pas une bonne utilisation de
+// la sauvegarde du pointeur "this" (dans la variable "that").
+// De plus, l'utilisation de this et that est erronée ici.
+function MultiCounter(initial) {
+    var that = this; //fct itself
+    var val = [];	
+    console.log(this);
+    this.init = function() {
+	val = [];
+	for (var i=0; i<initial.length; i++) {
+	    val.push(  initial[i] );
+	};
+    };
+    this.init();
+    return {
+	increment: function(i) { val[i] += 1; },
+	resetAll: function() { that.init() }, //let me access the this.init
+	getValues: function() { return val; }
+    };
+};
+
+var m = MultiCounter( [1, 2, 3] );
+m.resetAll();
+console.log(m.getValues());
+
+
+var popup = function(name) {
+	var foo = alert;
+	return function(e) {
+		console.log(this);
+		foo(name + " : " + e.target);
+	}
+};
+
+window.onload = function() {
+	alert("Le document a fini de charger!");
+	var setupBtn = document.getElementById("reset");
+	var runBtn = document.getElementById("increment");
+	var doneBtn = document.getElementById("done");
+	setupBtn.addEventListener( "click", popup("setup"), false);
+	runBtn.addEventListener( "click", popup("increment"), false);
+	doneBtn.addEventListener( "click", popup("done"), false);
+}
+
