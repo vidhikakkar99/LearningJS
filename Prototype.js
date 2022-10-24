@@ -3,6 +3,7 @@ function User(email, name) {  //fct are obj and they can have properties and met
     this.email = email;
     this.name = name;
     this.online = false;
+    var hello = "";
     //the method is returning smtg that's being saved in a variable
     this.login = function(){
         console.log(this.email, 'has logged in');
@@ -14,6 +15,7 @@ function User(email, name) {  //fct are obj and they can have properties and met
 var uno = new User('sdjkf@dfd.ca', 'jojo'); //when using new, the constructor will be called
 
 uno.login(); //in the function directly
+uno.hello
 
 //if you wanna add more methods to the prototype
 User.prototype.logout = function(){
@@ -112,3 +114,27 @@ window.onload = function() {
 	doneBtn.addEventListener( "click", popup("done"), false);
 }
 
+var m ={
+    a:5,
+    calculate: function(){
+        return this.a;
+    }
+}
+
+m.calculate=function(b){
+    console.log(0*b);
+}
+m.calculate=function(b,c){
+    console.log('0*b');
+}
+
+var point1 = {x:20,y:15};
+var point2 = {x:1,y:1};
+
+var substract = function(pt){
+    return {
+      x:pt.x-this.x,
+      y:pt.y-this.y
+    };
+  }
+console.log(point1-point2 --> {x:19,y:14});

@@ -1,0 +1,88 @@
+<html>
+<head>
+  <script>
+
+function watchForHateMessages() {
+    const callback = function(mutationsList, observer) {
+	for(const mutation of mutationsList) {
+            if (mutation.addedNodes.length) {
+            
+                if (mutation.attributeName == "msgType" && mutation.target.style.color == "blueviolet") {
+                    var imgage = document.createElement("img");
+                    imgage.style = "IMG";
+                    imgage.src = 'https://www.ububi.org/A2021_intra_ksdfiouvckjnweioj/heart.svg';
+                    mutation.addedNodes[0].appendChild(imgage)
+                    
+                }
+            }
+	}
+    };
+    
+  
+    const observer = new MutationObserver(callback);
+
+ 
+    const target = document.getElementById("chat");
+    const changesObserved = { attributes: true, childList: true, subtree: true };
+
+    observer.observe(target, changesObserved);
+}
+
+  
+
+    function addRandomMessage(msgType){
+      var msg=[
+        "I hate you",
+        "Good morning",
+        "I hate peanut",
+        "Good bye"
+      ];
+      var i=0;
+      var msgStyle= "border: 1px; border-radius: 25px; padding: 10px; "+
+                    "margin-top: 10px; background-color:" + 
+                    (msgType=="received"?"blueviolet":"crimson");
+
+      return function(){
+        //div to which the new div gets added
+        var chat=document.getElementById("chat");
+        //new div
+        var newDivMessage = document.createElement("div");
+        //new messae
+        var newMessage = document.createTextNode(msg[i]);
+        newDivMessage.appendChild(newMessage);
+        chat.appendChild(newDivMessage);
+
+        newDivMessage.style=msgStyle //if received then blue otherwise crimson
+        newDivMessage.msgType=msgType;
+
+        i=(i+1)%msg.length;
+      }
+    }
+
+    //Ajouter le code pour tout mettre en place aprÃ¨s le chargement complet de la page
+
+
+    window.onload = function() {
+        
+        setTimeout( function() {
+            addRandomMessage("received");
+        }, 1000);
+        setTimeout( function() {
+            addRandomMessage("sent");
+        }, 5000);
+
+        watchForHateMessages();
+    }
+
+  </script>
+  <style>
+    IMG{
+      width: 20;
+      height: 20;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat" style="width: 500px; height: 500px; border: 1px solid; overflow: scroll;"></div>
+</body>
+</html>

@@ -4,9 +4,55 @@
     <title>Build a table</title>
 </head>
 <body>
-<table>
+<div id="hello">
 <!-- here goes our data! -->
-</table>
+</div>
+<table>
+    <!-- here goes our data! -->
+ </table>
+<div class="menu">
+    <p class="list">
+    <ul>
+        <span>menu</span>
+        <li>
+            <span>HOme</span>
+            <span>hola</span>
+        </li>
+        <li><span>jeklf</span>></li>
+      
+    </ul> 
+</p>
+</div>
+    <ul>
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
 </body>
 <script src="build-table.js"></script>
 </html>
+<style type="text/css">
+    .menu{
+        text-decoration: underline;
+    }
+
+    .menu li > span:first-child {
+        color: red;
+    }
+    .list{
+        color: blue;
+    }
+    </style>
+
+<script>
+    var point1 = {x:20,y:15};
+    var point2 = {x:1,y:1};
+
+var substract = function(pt){
+    return {
+      x:pt.x-this.x,
+      y:pt.y-this.y
+    };
+  }
+console.log(point1-point2 --> {x:19,y:14});
+</script>

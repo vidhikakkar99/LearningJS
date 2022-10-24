@@ -61,14 +61,17 @@ function loadPlanets() {
     const targetNode = document.getElementById("content");
     // Implementez la fonction loadPlanets pour creer la table HTML et
     let table = document.createElement("table");
-    let fields = Object.keys(BODIES[0]);//gets all the head
+    let fields = Object.keys(BODIES[0]);//gets all the heads
     console.log(fields);
-    let header = document.createElement("tr");
-    fields.forEach( (field) => {
-    let cell = document.createElement("th");
-    cell.appendChild(document.createTextNode(field)); //attach all the headers to the th
-    header.appendChild(cell);
-    });
+    let header = document.createElement("tr"); //created the 1st row
+
+    //for all the fields we need to create a th then inside we need to attach a textNode
+    for (let key of field) {
+        let cell = document.createElement("th");
+        cell.appendChild(document.createTextNode(key)); //attach all the headers to the th
+        //all the headers will be attached to the cell one by one
+        header.appendChild(cell);
+    };
     table.appendChild(header);
 
     for (let key of BODIES) {
